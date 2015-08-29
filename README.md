@@ -1,6 +1,7 @@
 # nowhot
 
-今HOTな場所
+今HOTな場所  
+デプロイ先：http://nowhot.herokuapp.com/
 
 ## テスト画面
 
