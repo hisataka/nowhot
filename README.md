@@ -20,22 +20,22 @@
 
 データを登録します。
 
-メソッド：POST
-パラメータ：
-　hot：盛り上がり度
-　device：機器番号（1,2の二つかな？）
-　picture：base64エンコード文字列
-
+メソッド：POST  
+パラメータ：  
+　hot：盛り上がり度  
+　device：機器番号（1,2の二つかな？）  
+　picture：base64エンコード文字列  
+ 
 応答：
-<pre>登録しました</pre>
+<pre>登録しました</pre> 
 
 ### /nowhot?yyyymmddhhmiss=20150829185302
 
 nowhotデータを取得します。
 
-メソッド：GET
-パラメータ：
-　yyyymmddhhmiss：基本は現在時刻（これをキーとして5秒以内の登録データを取得）
+メソッド：GET  
+パラメータ：  
+　yyyymmddhhmiss：基本は現在時刻（これをキーとして5秒以内の登録データを取得）   
 
 応答：
 <pre>
