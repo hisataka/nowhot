@@ -60,3 +60,10 @@ from
 from
 	DEVICE_POSITION"]))))
 
+(defn delete[]
+  (do
+     (j/execute!
+      postgresql-db
+      ["delete from NOW_HOT"])
+     (res-http (str "NOW_HOTテーブルをクリアしました"))
+    ))

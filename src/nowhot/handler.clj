@@ -22,6 +22,7 @@
        (nowhot (params :yyyymmddhhmiss)))
   (GET "/nowhots" [] (nowhots))
   (GET "/devices" [] (devices))
+  (GET "/delete" [] (delete))
   (route/resources "/")
   (route/not-found "Not Found"))
 
