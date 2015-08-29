@@ -20,6 +20,8 @@
           (res-http (str "登録しました"))))
   (GET "/nowhot" {params :params}
        (nowhot (params :yyyymmddhhmiss)))
+  (GET "/nowhots" [] (nowhots))
+  (GET "/devices" [] (devices))
   (route/resources "/")
   (route/not-found "Not Found"))
 

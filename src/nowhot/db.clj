@@ -35,3 +35,28 @@ from
 		on C.DEVICE = A.DEVICE
 where
 	A.INS_TIME >= to_timestamp(?, 'YYYYMMDDHH24MISS') - time '00:00:05'" yyyymmddhhmiss]))))
+
+(defn nowhots []
+  (res-json (generate-string (j/query postgresql-db
+           ["select
+	A.ID,
+	A.DEVICE,
+	B.LATITUDE,
+	B.LONGITUDE,
+	A.HOT,
+	A.PICTURE,
+	A.INS_TIME
+from
+	NOW_HOT A
+	left outer join DEVICE_POSITION B
+		on B.DEVICE = A.DEVICE"]))))
+
+(defn devices []
+  (res-json (generate-string (j/query postgresql-db
+           ["select
+	DEVICE,
+	LATITUDE,
+	LONGITUDE
+from
+	DEVICE_POSITION"]))))
+
