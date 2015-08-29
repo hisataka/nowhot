@@ -1,8 +1,26 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>hello</title>
-    </head>
-    <body>
-        <h1>hello</h1>
-    </body>
+  <head>
+  </head>
+  <body>
+    <!-- ↓formタグにmethod属性とaction属性を追加する。 -->
+    <form method="post" action="entry">
+      <table>
+        <tr>
+          <td>hot</td>
+          <td><input name="hot" type="text" value="" /></td>
+        </tr>
+        <tr>
+          <td>device</td>
+          <td><input name="device" type="text" value="" /></td>
+        </tr>
+        <tr>
+          <td>picture</td>
+          <td><input name="picture" type="text" value="" /></td>
+        </tr>
+        </table>
+      <div><input id="greet_button" type="submit" value="Greet" /><div/>
+    </form>
+    <div id="greeting_area"></div>
+  </body>
 </html>

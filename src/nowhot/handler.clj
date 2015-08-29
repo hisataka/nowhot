@@ -1,49 +1,27 @@
 (ns nowhot.handler
-  (:require [clojure.java.io :as io]
-            [ring.util.response :as response]
+  (:require [ring.util.response :as response]
             [compojure.handler :as handler]
             [compojure.core :refer :all]
             [compojure.route :as route]
-            [hiccup.form :as form]
-            [hiccup.core :refer [html]]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]])
+  (:require [org.httpkit.client :as http])
+  (:require [clojure.java.jdbc :as j])
+  (:use [cheshire.core]))
 
-;; ページレイアウト
-(defn layout [& content]
-  (html
-   [:head [:title "file upload with compojure."]]
-   [:body
-    content]))
-
-;; ファイルアップロード用フォーム
-(def upload-form
-  (layout
-   (form/form-to
-    {:enctype "multipart/form-data"}
-    [:post "/file"]
-    (form/file-upload "file")
-    (form/submit-button "submit"))))
-
-;; アップロード成功
-(def success
-  (layout
-   [:h1 "File uploaded successfully!"]))
-
-;; アップロードされたファイルを保存する
-(defn save-file [filename tempfile]
-  (io/copy tempfile (io/file filename))
-  (io/delete-file tempfile))
-
+(load "http")
+(load "db")
 
 ;ルーティング設定
 (defroutes app-routes
-  (GET "/" [] upload-form)
-  (GET "/success" [] success)
-  (POST "/file" {{{:keys [filename tempfile]} :file} :params}
-          (save-file filename tempfile)
-          (response/redirect "/success"))
+  (GET "/" [] "running!")
+  (POST "/entry" [hot device picture]
+        (do
+          (entry hot device picture)
+          (res-http (str "登録しました"))))
+  (GET "/nowhot" {params :params}
+       (nowhot (params :yyyymmddhhmiss)))
   (route/resources "/")
   (route/not-found "Not Found"))
 
 (def app
-  (wrap-defaults app-routes site-defaults))
+  (wrap-defaults app-routes (assoc-in site-defaults [:security :anti-forgery] false)))
