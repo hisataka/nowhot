@@ -3,8 +3,11 @@
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
+;ルーティング設定
 (defroutes app-routes
-  (GET "/" [] "Hello World")
+  (GET "/" [] "running!")
+  (route/files "/")
+  (route/resources "/")
   (route/not-found "Not Found"))
 
 (def app
