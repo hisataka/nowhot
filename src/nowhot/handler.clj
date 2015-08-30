@@ -16,6 +16,9 @@
   (GET "/" [] "running!")
   (POST "/entry" [hot device picture]
         (do
+          (println "##########################################################")
+          (println (str "hot=" hot ", device=" device ",picture=" picture))
+          (println "##########################################################")
           (entry hot device picture)
           (res-http (str "登録しました"))))
   (GET "/nowhot" {params :params}
