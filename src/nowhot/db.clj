@@ -34,7 +34,9 @@ from
 	left outer join DEVICE_POSITION C
 		on C.DEVICE = A.DEVICE
 where
-	A.INS_TIME >= to_timestamp(?, 'YYYYMMDDHH24MISS') - time '00:00:05'" yyyymmddhhmiss]))))
+	A.INS_TIME >= to_timestamp(?, 'YYYYMMDDHH24MISS') - time '00:00:05'
+order by
+  A.DEVICE" yyyymmddhhmiss]))))
 
 (defn nowhots []
   (res-json (generate-string (j/query postgresql-db
@@ -49,7 +51,9 @@ where
 from
 	NOW_HOT A
 	left outer join DEVICE_POSITION B
-		on B.DEVICE = A.DEVICE"]))))
+		on B.DEVICE = A.DEVICE
+order by
+  A.INS_TIME"]))))
 
 (defn devices []
   (res-json (generate-string (j/query postgresql-db
@@ -58,7 +62,9 @@ from
 	LATITUDE,
 	LONGITUDE
 from
-	DEVICE_POSITION"]))))
+	DEVICE_POSITION
+order by
+  DEVICE"]))))
 
 (defn delete[]
   (do
